@@ -44,7 +44,7 @@ const FullPost = () => {
         <div className='card'>
           <div className='card-body'>
             <small className='text-secondary'>
-              Created on: {format(post.createdAt, 'dd.MM.yyyy HH:mm')}
+              {format(post.createdAt, 'dd.MM.yyyy HH:mm')}
             </small>
             <h4 className='card-title'>{post.title}</h4>
             <p className='card-text'>{post.description}</p>

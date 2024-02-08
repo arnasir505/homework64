@@ -12,14 +12,11 @@ const NewEditPost = () => {
     description: '',
     title: '',
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const fetchPost = useCallback(async () => {
-    setIsLoading(true);
     const response = await axiosApi.get('/posts/' + params.id + '.json');
     const post = response.data;
     setPost(post);
-    setIsLoading(false);
   }, [params.id]);
 
   const handleChange = (
@@ -95,6 +92,7 @@ const NewEditPost = () => {
             className='form-control'
             name='description'
             placeholder='Description'
+            rows={5}
             value={post.description}
             onChange={(e) => handleChange(e)}
           />

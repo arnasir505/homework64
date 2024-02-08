@@ -13,9 +13,9 @@ const PostItem: React.FC<Props> = ({ id, createdAt, title }) => {
     <div className='card'>
       <div className='card-body'>
         <small className='text-secondary'>
-          Created on: {format(createdAt, 'dd.MM.yyyy HH:mm')}
+          {format(createdAt, 'dd.MM.yyyy HH:mm')}
         </small>
-        <h5 className='card-title'>{title}</h5>
+        <h5 className='card-title my-2'>{title}</h5>
         <Link to={'/posts/' + id} className='btn btn-primary'>
           Read more &gt;&gt;
         </Link>
