@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ApiPost } from '../../types';
 import axiosApi from '../../axiosApi';
 import { format } from 'date-fns';
@@ -7,7 +7,7 @@ import Spinner from '../../components/Spinner/Spinner';
 
 const FullPost = () => {
   const params = useParams();
-
+  const navigate = useNavigate();
   const [post, setPost] = useState<ApiPost | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -18,6 +18,11 @@ const FullPost = () => {
     setPost(post);
     setIsLoading(false);
   }, [params.id]);
+
+  const deletePost = async (id: string | undefined) => {
+    await axiosApi.delete('/posts/' + id + '.json');
+    navigate('/');
+  };
 
   useEffect(() => {
     try {
@@ -49,7 +54,11 @@ const FullPost = () => {
             >
               Edit
             </Link>
-            <button type='button' className='btn btn-danger ms-2'>
+            <button
+              type='button'
+              className='btn btn-danger ms-2'
+              onClick={() => deletePost(params.id)}
+            >
               Delete
             </button>
           </div>
