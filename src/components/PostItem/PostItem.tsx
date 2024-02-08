@@ -1,9 +1,27 @@
-import React from 'react'
+import { format } from 'date-fns';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const PostItem: React.FC = () => {
-  return (
-    <div>PostItem</div>
-  )
+interface Props {
+  id: string;
+  createdAt: string;
+  title: string;
 }
 
-export default PostItem
+const PostItem: React.FC<Props> = ({ id, createdAt, title }) => {
+  return (
+    <div className='card'>
+      <div className='card-body'>
+        <small className='text-secondary'>
+          Created on: {format(createdAt, 'dd.MM.yyyy HH:mm')}
+        </small>
+        <h5 className='card-title'>{title}</h5>
+        <Link to={'/posts/' + id} className='btn btn-primary'>
+          Read more &gt;&gt;
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default PostItem;

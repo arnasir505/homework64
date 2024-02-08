@@ -26,9 +26,14 @@ const Posts = () => {
   }, [fetchPosts]);
 
   return (
-    <div className='container'>
+    <div className='container mt-3 d-flex gap-3 flex-column'>
       {posts.map((post) => (
-        <PostItem />
+        <PostItem
+          key={post.id}
+          createdAt={post.createdAt}
+          title={post.title}
+          id={post.id}
+        />
       ))}
     </div>
   );
