@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Post, ApiPosts } from '../../types';
 import axiosApi from '../../axiosApi';
 import PostItem from '../../components/PostItem/PostItem';
+import Spinner from '../../components/Spinner/Spinner';
 
 const Posts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -22,10 +23,14 @@ const Posts = () => {
   }, []);
 
   useEffect(() => {
-    void fetchPosts();
+    try {
+      void fetchPosts();
+    } catch (error) {
+      console.log(error);
+    }
   }, [fetchPosts]);
 
-  return (
+  return posts.length > 0 ? (
     <div className='container mt-3 d-flex gap-3 flex-column'>
       {posts.map((post) => (
         <PostItem
@@ -35,6 +40,10 @@ const Posts = () => {
           id={post.id}
         />
       ))}
+    </div>
+  ) : (
+    <div className='mt-5'>
+      <Spinner />
     </div>
   );
 };

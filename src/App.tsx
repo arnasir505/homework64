@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Posts from './containers/Posts/Posts';
 import NewPost from './containers/NewPost/NewPost';
+import FullPost from './containers/FullPost/FullPost';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/posts/add' element={<NewPost />} />
         <Route path='/about' element={<h1>About</h1>} />
         <Route path='/contacts' element={<h1>Contacts</h1>} />
+        <Route path='/posts/:id' element={<FullPost/>}/>
         <Route
           path='*'
           element={<h1 className='text-center mt-5'>Not Found!</h1>}
