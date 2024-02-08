@@ -9,5 +9,5 @@ export interface ApiPosts {
 }
 
 export interface Post extends ApiPost {
-  id: string
+  id: string;
 }
